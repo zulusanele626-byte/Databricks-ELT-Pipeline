@@ -336,11 +336,12 @@ python transformations/bronze/bronze_transactions.py
 
 ## 📝 License
 
-[Add your license here]
+MIT License
+
 
 ## 👥 Contributors
 
-* **Your Name** - Initial development and architecture
+* **Sanele Zulu** - Initial development and architecture
 
 ## 📧 Contact
 
