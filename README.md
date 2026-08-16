@@ -172,6 +172,4 @@ MIT License
 
 Data Analyst | Aspiring Data Engineer
 
-GitHub: [Add your GitHub profile link]
-
 Email: [zulusalema626@gmail.com](mailto:zulusalema626@gmail.com)
