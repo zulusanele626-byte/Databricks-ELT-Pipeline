@@ -1,0 +1,74 @@
+# Databricks Asset Bundle (DAB) Configuration
+# Enables deployment automation and CI/CD integration
+
+bundle:
+  name: END_END_PIPELINE
+
+include:
+  - resources/*.yml
+
+workspace:
+  host: ${DATABRICKS_HOST}
+
+targets:
+  # Development environment
+  dev:
+    mode: development
+    default: true
+    workspace:
+      root_path: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/dev
+    resources:
+      pipelines:
+        end_end_pipeline:
+          name: ${bundle.name}_dev
+          
+  # Production environment  
+  prod:
+    mode: production
+    workspace:
+      root_path: /Shared/.bundle/${bundle.name}/prod
+    resources:
+      pipelines:
+        end_end_pipeline:
+          name: ${bundle.name}_prod
+          # Production-specific overrides
+          permissions:
+            - level: CAN_VIEW
+              group_name: users
+
+resources:
+  pipelines:
+    end_end_pipeline:
+      name: ${bundle.name}
+      
+      # Pipeline configuration
+      photon: true
+      serverless: true
+      channel: CURRENT
+      
+      # Target storage
+      catalog: workspace
+      target: default
+      
+      # Source code
+      libraries:
+        - file:
+            path: ./transformations
+      
+      # Development settings
+      development: true
+      
+      # Optional: Configure cluster for non-serverless
+      # clusters:
+      #   - label: default
+      #     num_workers: 2
+      #     node_type_id: i3.xlarge
+      #     spark_version: 13.3.x-scala2.12
+      
+      # Optional: Notifications
+      # notifications:
+      #   - email_recipients:
+      #       - your.email@example.com
+      #     alerts:
+      #       - on-update-failure
+      #       - on-flow-failure
