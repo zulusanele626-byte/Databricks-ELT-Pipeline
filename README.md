@@ -1,5 +1,4 @@
 # Databricks-ELT-Pipeline
-END_END_PIPELINE
 
 A production-ready Databricks Lakeflow Spark Declarative Pipeline implementing a medallion architecture (Bronze → Silver → Gold) for retail transaction data processing and analytics.
 
